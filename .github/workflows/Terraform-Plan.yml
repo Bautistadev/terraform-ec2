@@ -14,20 +14,20 @@ jobs:
             AWS_REGION: 'us-east-1'
         
         
-            steps:
-                - name: Checkout
-                  uses: actions/checkout@v2
+        steps:
+            - name: Checkout
+                uses: actions/checkout@v2
 
-                - name: Setup Terraform
-                  uses: hashicorp/setup-terraform@v1
-                  with:
-                    cli_config_credentials_token: ${{ secrets.TFTOKEN }}
+            - name: Setup Terraform
+                uses: hashicorp/setup-terraform@v1
+                with:
+                cli_config_credentials_token: ${{ secrets.TFTOKEN }}
 
-                - name: Terraform Init
-                  id: init
-                  run: terraform init
-                
-                - name: Terraform Plan
-                  id: plan
-                  if: github.event_name == 'push'
-                  run: terraform plan
+            - name: Terraform Init
+                id: init
+                run: terraform init
+            
+            - name: Terraform Plan
+                id: plan
+                if: github.event_name == 'push'
+                run: terraform plan
