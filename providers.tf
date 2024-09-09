@@ -4,7 +4,13 @@ terraform {
             source  = "hashicorp/aws"
             version = "~> 5.0"
         }
-    }   
+    }
+    cloud { 
+        organization = "Bootcamp-terraform--" 
+        workspaces { 
+            name = "terraform-workflow-github" 
+        } 
+    }    
 }
 
 provider "aws" {
