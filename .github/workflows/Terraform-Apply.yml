@@ -16,24 +16,23 @@ jobs:
         
         steps:
             - name: Checkout
-                uses: actions/checkout@v2
+              uses: actions/checkout@v2
 
             - name: Setup Terraform
-                uses: hashicorp/setup-terraform@v1
-                with:
+              uses: hashicorp/setup-terraform@v1
+              with:
                 cli_config_credentials_token: ${{ secrets.TFTOKEN }}
 
             - name: Terraform Init
-                id: init
-                run: terraform init
+              id: init
+              run: terraform init
             
             - name: Terraform Plan
-                id: plan
-                if: github.event_name == 'push'
-                run: terraform plan
+              id: plan
+              if: github.event_name == 'push'
+              run: terraform plan
             
             - name: Terraform Apply
-                run: terraform apply -auto-approve
-                with:
-                cli_config_credentials_token: ${{ secrets.TFTOKEN }}
+              run: terraform apply -auto-approve
+              
                   
